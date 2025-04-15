@@ -1,1 +1,1 @@
-# Build-a-robot-themed-game-using-Alibaba-Cloud-services.-
+# Build-a-robot-themed-game-using-Alibaba-Cloud-services

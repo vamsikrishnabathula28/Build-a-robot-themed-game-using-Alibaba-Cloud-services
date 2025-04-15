@@ -17,7 +17,7 @@ export const scores = pgTable("scores", {
   id: serial("id").primaryKey(),
   playerName: text("player_name").notNull(),
   score: integer("score").notNull(),
-  timeElapsed: integer("time_elapsed").notNull(), // Time in seconds
+  timeElapsed: integer("time_elapsed").notNull(), // Time in seconds (will be rounded)
   createdAt: timestamp("created_at").defaultNow(),
 });
 

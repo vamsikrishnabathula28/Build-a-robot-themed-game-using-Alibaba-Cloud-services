@@ -9,9 +9,12 @@ export default function Controls() {
   const gamePhase = useRobotGame(state => state.phase);
   
   useEffect(() => {
-    const unsubscribeRestart = useKeyboardControls.subscribe(
-      state => state.restart,
-      pressed => {
+    // Use type assertion to access the subscribe method
+    const controls = useKeyboardControls as any;
+    
+    const unsubscribeRestart = controls.subscribe(
+      (state: { restart: boolean }) => state.restart,
+      (pressed: boolean) => {
         if (pressed && gamePhase === 'ended') {
           console.log("Restarting game...");
           restartGame();

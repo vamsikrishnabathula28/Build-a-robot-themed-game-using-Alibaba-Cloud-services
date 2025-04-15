@@ -20,8 +20,9 @@ export default function GameOver() {
   })();
   
   // Fetch updated high scores after submission
-  const { data: highScores, refetch } = useQuery({
+  const { data: highScores, refetch } = useQuery<any[]>({
     queryKey: ['/api/scores'],
+    initialData: [],
   });
   
   // Submit score to backend
@@ -35,7 +36,7 @@ export default function GameOver() {
       await apiRequest('POST', '/api/scores', {
         playerName,
         score,
-        timeElapsed: time
+        timeElapsed: Math.round(time) // Round to integer to match schema
       });
       
       setSubmitted(true);
@@ -89,7 +90,7 @@ export default function GameOver() {
           {highScores && highScores.length > 0 ? (
             <div className="bg-gray-50 rounded-md p-2">
               <ol className="text-sm">
-                {highScores.slice(0, 5).map((score, index) => (
+                {highScores.slice(0, 5).map((score: any, index: number) => (
                   <li key={index} className="flex justify-between py-1 border-b last:border-0 border-gray-200">
                     <span className="font-medium">{index + 1}. {score.playerName}</span>
                     <span className="font-bold">{score.score}</span>

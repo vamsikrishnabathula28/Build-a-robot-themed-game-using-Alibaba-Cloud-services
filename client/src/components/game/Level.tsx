@@ -51,11 +51,11 @@ export default function Level() {
   ], []);
   
   // Collectible positions initially
-  const initialCollectibles = useMemo(() => [
-    { position: [3, 0.5, 3] as [number, number, number], id: 1 },
-    { position: [-3, 0.5, -3] as [number, number, number], id: 2 },
-    { position: [7, 0.5, -2] as [number, number, number], id: 3 },
-    { position: [-6, 0.5, 6] as [number, number, number], id: 4 },
+  const initialCollectibles = useMemo<CollectibleData[]>(() => [
+    { position: [3, 0.5, 3], id: 1 },
+    { position: [-3, 0.5, -3], id: 2 },
+    { position: [7, 0.5, -2], id: 3 },
+    { position: [-6, 0.5, 6], id: 4 },
   ], []);
   
   // State for collectibles
@@ -87,7 +87,7 @@ export default function Level() {
           { 
             position: [x, 0.5, z] as [number, number, number], 
             id: Math.random() 
-          }
+          } as CollectibleData
         ]);
       }
       

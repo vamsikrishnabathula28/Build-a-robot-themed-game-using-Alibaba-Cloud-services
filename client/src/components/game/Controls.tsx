@@ -24,18 +24,18 @@ export default function Controls() {
     };
   }, [gamePhase, restartGame]);
   
-  // Debug logs for controls
-  useFrame(() => {
-    const forward = useKeyboardControls.getState().forward;
-    const backward = useKeyboardControls.getState().backward;
-    const leftward = useKeyboardControls.getState().leftward;
-    const rightward = useKeyboardControls.getState().rightward;
-    const jump = useKeyboardControls.getState().jump;
-    
-    if (forward || backward || leftward || rightward || jump) {
-      console.log("Controls:", { forward, backward, leftward, rightward, jump });
-    }
-  });
+  // Optional: Debug logs for controls (comment this out for production)
+  // useFrame(() => {
+  //   const forward = useKeyboardControls.getState().forward;
+  //   const backward = useKeyboardControls.getState().backward;
+  //   const leftward = useKeyboardControls.getState().leftward;
+  //   const rightward = useKeyboardControls.getState().rightward;
+  //   const jump = useKeyboardControls.getState().jump;
+  //   
+  //   if (forward || backward || leftward || rightward || jump) {
+  //     console.log("Controls:", { forward, backward, leftward, rightward, jump });
+  //   }
+  // });
   
   return null;
 }

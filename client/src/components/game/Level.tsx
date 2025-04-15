@@ -8,6 +8,17 @@ import { useRobotGame } from "@/lib/stores/useRobotGame";
 import { useKeyboardControls } from "@react-three/drei";
 import { useAudio } from "@/lib/stores/useAudio";
 
+// Define types for our obstacles and collectibles
+interface ObstacleData {
+  position: [number, number, number];
+  scale: [number, number, number];
+}
+
+interface CollectibleData {
+  position: [number, number, number];
+  id: number;
+}
+
 export default function Level() {
   const groundTexture = useTexture("/textures/asphalt.png");
   groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
@@ -28,7 +39,7 @@ export default function Level() {
   const lastCollectibleSpawn = useRef(0);
   
   // Obstacle positions - predefined to avoid random generation during render
-  const obstaclePositions = useMemo(() => [
+  const obstaclePositions = useMemo<ObstacleData[]>(() => [
     { position: [5, 0.5, -5], scale: [1, 1, 1] },
     { position: [-7, 0.5, 3], scale: [1, 1, 1] },
     { position: [2, 0.5, 7], scale: [1, 1, 1] },
@@ -41,10 +52,10 @@ export default function Level() {
   
   // Collectible positions initially
   const initialCollectibles = useMemo(() => [
-    { position: [3, 0.5, 3], id: 1 },
-    { position: [-3, 0.5, -3], id: 2 },
-    { position: [7, 0.5, -2], id: 3 },
-    { position: [-6, 0.5, 6], id: 4 },
+    { position: [3, 0.5, 3] as [number, number, number], id: 1 },
+    { position: [-3, 0.5, -3] as [number, number, number], id: 2 },
+    { position: [7, 0.5, -2] as [number, number, number], id: 3 },
+    { position: [-6, 0.5, 6] as [number, number, number], id: 4 },
   ], []);
   
   // State for collectibles
@@ -74,7 +85,7 @@ export default function Level() {
         setCollectibles(prev => [
           ...prev, 
           { 
-            position: [x, 0.5, z], 
+            position: [x, 0.5, z] as [number, number, number], 
             id: Math.random() 
           }
         ]);
